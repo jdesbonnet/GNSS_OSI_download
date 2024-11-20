@@ -31,3 +31,29 @@ python3 osi_gnss_download.py --station-id=glw1 --date=2024-11-19 --start-hour=00
 Data is downloaded as a ZIP archive and saved in format `RINEX_{stnid}_{date}_{start_hour}_{end_hour}.zip`. 
 Example: 'RINEX_glw1_2024-11-19_00_06.zip'
 
+## Command line options
+
+```
+usage: osi_gnss_download.py [-h] [--list-stations] --station-id STATION_ID
+                            --date DATE [--start-hour START_HOUR]
+                            [--end-hour END_HOUR] [--user-agent USER_AGENT]
+
+Download GNSS RINEX files from https://gnss.osi.ie. Please agree to T&C on
+site first.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --list-stations       Obtain a list of station IDs and exit. (default:
+                        False)
+  --station-id STATION_ID
+                        Station ID. Use --list-stations to obtain an
+                        exhaustive list. Example glw1 (Galway) (default: None)
+  --date DATE           Date of data capture yyyy-mm-dd (default: None)
+  --start-hour START_HOUR
+                        Hour (UTC) 0 to 22 (default: 0)
+  --end-hour END_HOUR   End hour (UTC) 1 to 23 (default: 24)
+  --user-agent USER_AGENT
+                        User-agent header to use in transaction (default:
+                        GNSS_OSI_download v1.0)
+
+```
