@@ -20,4 +20,5 @@ Downloading data:
 python3 osi_gnss_download.py --station-id=glw1 --date=2024-11-19 --start-hour=00 --end-hour=06
 ```
 
-A
+Data is downloaded as a ZIP archive and saved in format RINEX_{stnid}_{date}_{start_hour}_{end_hour}.zip. 
+Example: 'DATA_glw1_2024-11-18_00_06.zip'
