@@ -64,7 +64,7 @@ optional arguments:
                         exhaustive list. Example glw1 (Galway) (default: None)
   --date DATE           Date of data capture yyyy-mm-dd (default: None)
   --start-hour START_HOUR
-                        Hour (UTC) 0 to 22 (default: 0)
+                        Start hour (UTC) 0 to 22 (default: 0)
   --end-hour END_HOUR   End hour (UTC) 1 to 23 (default: 24)
   --user-agent USER_AGENT
                         User-agent header to use in transaction (default:
