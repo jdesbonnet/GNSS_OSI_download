@@ -93,7 +93,7 @@ def download_data(station_id, date, start, end):
     #
     response = session.get(DOWNLOAD_ENDPOINT, headers=AGENT)
     if response.status_code == 200:
-        filename = f"DATA_{station_id}_{date}_{start:02d}_{end:02d}.zip"
+        filename = f"RINEX_{station_id}_{date}_{start:02d}_{end:02d}.zip"
         with open(filename, 'wb') as file:
             file.write(response.content)
         print(f"Data successfully downloaded and saved as {filename}")
