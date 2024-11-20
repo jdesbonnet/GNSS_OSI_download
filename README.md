@@ -8,6 +8,7 @@ Please agree to terms and conditions on site first.
 This script is known to be working as of 2024-11-20.
 
 
+
 ## Examples
 
 Getting help on command line options:
@@ -30,6 +31,19 @@ python3 osi_gnss_download.py --station-id=glw1 --date=2024-11-19 --start-hour=00
 
 Data is downloaded as a ZIP archive and saved in format `RINEX_{stnid}_{date}_{start_hour}_{end_hour}.zip`. 
 Example: 'RINEX_glw1_2024-11-19_00_06.zip'
+
+
+
+## Dependencies
+
+This script makes use of the requests and BeautifulSoup packages. On Ubuntu 22.04 these can be installed
+with the following command:
+
+```
+sudo apt-get install python3-requests python3-bs4
+```
+
+
 
 ## Command line options
 
