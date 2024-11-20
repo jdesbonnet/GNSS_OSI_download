@@ -19,7 +19,7 @@ python3 osi_gnss_download.py -h
 Getting a list of station IDs:
 
 ```
-python3 osi_gnss_download.py -h
+python3 osi_gnss_download.py --list-stations
 ```
 
 Downloading data:
@@ -30,3 +30,4 @@ python3 osi_gnss_download.py --station-id=glw1 --date=2024-11-19 --start-hour=00
 
 Data is downloaded as a ZIP archive and saved in format `RINEX_{stnid}_{date}_{start_hour}_{end_hour}.zip`. 
 Example: 'RINEX_glw1_2024-11-19_00_06.zip'
+
