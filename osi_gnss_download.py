@@ -1,11 +1,17 @@
-import requests
 import argparse
+import requests
 from bs4 import BeautifulSoup
 
 #
 # Script to download RINEX files from https://gnss.osi.ie
-# Note: please agree to terms on the site before downloading.
+# Note: please agree to terms at https://gnss.osi.ie site before downloading data.
+# This software is licenced under the MIT License.
 # Joe Desbonnet 2024-11-15
+#
+# Dependencies:
+# * requests to allow HTTP GET/POST with session cookie support.
+# * bs4 (BeautifulSoup) to allow parsing of HTML forms to extract hidden session 
+#   token and to discover station IDs from SELECT element.
 #
 
 # Base URL for the download website
