@@ -3,7 +3,8 @@
 A python script to download GNSS RINEX files from [Tailte Éireann](https://www.tailte.ie/en/)
 (formerly Ordnance Survey of Ireland or OSI) Active GNSS Station network.
 The data download site is at https://gnss.osi.ie. 
-Please agree to terms and conditions on site first.
+Before downloading data, please agree to terms and conditions at https://gnss.osi.ie first. 
+This software is covered by the MIT License.
 
 This script is known to be working as of 2024-11-20.
 
