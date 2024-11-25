@@ -101,7 +101,7 @@ def download_data(args,station_id, date, start, end):
         return
     
     if "No data available for your chosen station." in response.text :
-        print ("No data found matching date/time/station criteria. Check for availability at https://gnsss.osi.ie")
+        print ("No data found matching date/time/station criteria. Only the last 30 days of data available. Check for availability at https://gnsss.osi.ie")
         return
 
     #
