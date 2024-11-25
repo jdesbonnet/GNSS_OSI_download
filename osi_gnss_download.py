@@ -116,8 +116,8 @@ if __name__ == '__main__':
     )
 
     parser.add_argument("--list-stations", action="store_true", help="Obtain a list of station IDs and exit.")
-    parser.add_argument("--station-id", help="Station ID. Use --list-stations to obtain an exhaustive list. Example glw1 (Galway)", required=True)
-    parser.add_argument("--date",help="Date of data capture yyyy-mm-dd", required=True)
+    parser.add_argument("--station-id", help="Station ID. Use --list-stations to obtain an exhaustive list. Example glw1 (Galway)")
+    parser.add_argument("--date",help="Date of data capture yyyy-mm-dd")
     parser.add_argument("--start-hour",help="Start hour (UTC) 0 to 22", default="0")
     parser.add_argument("--end-hour", help="End hour (UTC) 1 to 23", default="24")
     parser.add_argument("--user-agent", help="User-agent header to use in transaction", default=DEFAULT_AGENT)
