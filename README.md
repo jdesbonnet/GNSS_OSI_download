@@ -8,6 +8,8 @@ This software is covered by the MIT License.
 
 This script is known to be working as of 2024-11-20.
 
+Note: it seems only the last 30 days of data can be downloaded.
+
 
 
 ## Examples
