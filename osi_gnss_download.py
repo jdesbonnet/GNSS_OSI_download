@@ -23,7 +23,7 @@ AGENT = {
     'User-Agent': DEFAULT_AGENT
 }
 
-def output_response_info (session, response) :
+def print_response_info (session, response) :
     print("Request Headers:")
     print(response.request.headers)
     print("\nResponse Status Code:", response.status_code)
@@ -33,11 +33,13 @@ def output_response_info (session, response) :
     print("\n----")
 
 
-def list_stations() :
+def list_stations(args) :
     # Station IDs are embedded in the SELECT element on the download form.
     session = requests.Session()
     response = session.get(FORM_ENDPOINT, headers=AGENT)
-    #output_response_info (session,response)
+    if args.debug :
+        output_response_info (session,response)
+
     if response.status_code != 200:
         print(f"Failed to access the home page at {FORM_ENDPOINT}. Status code: {response.status_code}")
         return
@@ -53,7 +55,7 @@ def list_stations() :
 
 
 
-def download_data(station_id, date, start, end):
+def download_data(args,station_id, date, start, end):
 
     
     # Start a session to maintain cookies
@@ -63,7 +65,10 @@ def download_data(station_id, date, start, end):
     # Step 1: Access the home page to initiate the session
     #
     response = session.get(FORM_ENDPOINT, headers=AGENT)
-    #output_response_info (session,response)
+
+    if args.debug :
+        print_response_info (session,response)
+
     if response.status_code != 200:
         print(f"Failed to access the download home page at {FORM_ENDPOINT}. Status code: {response.status_code}")
         return
@@ -89,15 +94,22 @@ def download_data(station_id, date, start, end):
         'as_sfid': as_sfid
     }
     response = session.post(FORM_ENDPOINT, data=form_data, headers=AGENT)
-    #output_response_info(session,response)
+    if args.debug :
+        print_response_info(session,response)
     if response.status_code != 200:
         print(f"Failed to submit the form. Status code: {response.status_code}")
         return
     
+    if "No data available for your chosen station." in response.text :
+        print ("No data found matching date/time/station criteria. Check for availability at https://gnsss.osi.ie")
+        return
+
     #
     # Step 3: Trigger the data download
     #
     response = session.get(DOWNLOAD_ENDPOINT, headers=AGENT)
+    if args.debug :
+        print_response_info(session,response)
     if response.status_code == 200:
         filename = f"RINEX_{station_id}_{date}_{start:02d}_{end:02d}.zip"
         with open(filename, 'wb') as file:
@@ -121,12 +133,13 @@ if __name__ == '__main__':
     parser.add_argument("--start-hour",help="Start hour (UTC) 0 to 22", default="0")
     parser.add_argument("--end-hour", help="End hour (UTC) 1 to 23", default="24")
     parser.add_argument("--user-agent", help="User-agent header to use in transaction", default=DEFAULT_AGENT)
+    parser.add_argument("--debug", action="store_true", help="Output debugging info.")
 
     args = parser.parse_args()
 
     # Option to list station IDs and exit
     if args.list_stations :
-        list_stations()
+        list_stations(args)
         exit()
 
     # Proceed to data download...
@@ -136,5 +149,5 @@ if __name__ == '__main__':
     else :
         end = start + 1
 
-    download_data(args.station_id, args.date, start, end)
+    download_data(args, args.station_id, args.date, start, end)
 
